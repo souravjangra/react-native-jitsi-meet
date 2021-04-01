@@ -44,6 +44,8 @@ RCT_EXPORT_METHOD(call:(NSString *)urlString userInfo:(NSDictionary *)userInfo)
         JitsiMeetConferenceOptions *options = [JitsiMeetConferenceOptions fromBuilder:^(JitsiMeetConferenceOptionsBuilder *builder) {        
             builder.room = urlString;
             builder.userInfo = _userInfo;
+            [builder setFeatureFlag:@"chat.enabled" withBoolean:YES];
+            [builder setFeatureFlag:@"resolution" withValue:@(480)];
         }];
         [jitsiMeetView join:options];
     });
